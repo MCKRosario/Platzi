@@ -1,2 +1,2 @@
 # Platzi
- Study Projects
+ Study Projects ;)
