@@ -48,8 +48,8 @@ function dibujoPorClick()
 
         dibujarLinea(color2,1,1,1,marco);
         dibujarLinea(color1,1,marco,marco,marco);
-        dibujarLinea(color3,1,1,marco,1);
-        dibujarLinea(color4,marco,1,marco,marco);
+        dibujarLinea(color4,1,1,marco,1);
+        dibujarLinea(color3,marco,1,marco,marco);
 
     }
 
