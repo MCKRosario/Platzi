@@ -12,11 +12,11 @@ var teclas = {
 var x = 0;
 var y = 0;
 
-
 var fondo = {
     url: "tile.png",
     cargarOK: false
-}
+};
+
 var vaca = {
     url: "vaca.png",
     cargaOK: false
@@ -41,13 +41,11 @@ cerdo.imagen = new Image();
 cerdo.imagen.src = cerdo.url;
 cerdo.imagen.addEventListener("load", cargarCerdos);
 
-
-
 function cargarFondo()
 {
     fondo.cargarOK = true;
     dibujar();
-}
+};
 
 function cargarVacas()
 {
@@ -77,10 +75,45 @@ function dibujar()
             var x = x * 60;
             var y = y * 60;
             papel.drawImage(vaca.imagen, x, y);
-       }
+        }
         
     }
-    
+       
+}
+
+
+function caminoCerdo (evento)
+{
+   if(cerdo.cargaOK)       
+    {   
+        var movimiento = 10;
+        var x = 0;
+        var y = 0;
+            
+        switch(evento.keyCode)
+        {
+            case teclas.UP:
+            y = y - movimiento;
+            papel.drawImage(cerdo.imagen,x,y);
+            break;
+
+            case teclas.DOWN:
+            y = y + movimiento;
+            papel.drawImage(cerdo.imagen,x,y);
+            break;
+
+            case teclas.LEFT:
+            x = x - movimiento;
+            papel.drawImage(cerdo.imagen,x,y);
+            break;
+            
+            case teclas.RIGHT:
+            x = x + movimiento;
+            papel.drawImage(cerdo.imagen,x,y);
+            break;
+            
+        }   
+    }    
 }
 
 function aleatorio (min, maxi)
@@ -90,45 +123,3 @@ function aleatorio (min, maxi)
     return resultado;
 
 }
-
-
-
-
-function caminoCerdo (evento)
-{
-
-
-
-    if(cerdo.cargarOK)
-    {
-        var movimiento = 10;
-        
-        
-
-        switch(evento.keyCode)
-        {
-            case teclas.UP:
-            
-            y = y - movimiento;
-
-            break;
-            case teclas.DOWN:
-            
-            y = y + movimiento;
-            break;
-            case teclas.LEFT:
-            
-            x = x - movimiento;
-            break;
-            case teclas.RIGHT:
-            
-            x = x + movimiento;
-            break;
-        }
-        papel.drawImage(cerdo.imagen, x, y);
-                   
-    }
-}        
-
-    
-
