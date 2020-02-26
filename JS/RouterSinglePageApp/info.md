@@ -46,8 +46,7 @@ Dato nuevo: La palabra "VANILLA" describe a los productos originales sin nada ex
             <li><button>About Me</button></li>
         </ul>
     </header>
-    <div><h1>Hi student 😉 This's the Home
-    </h1></div>
+    <div> <h1>Hi student 😉 This's the Home</h1> </div>
     </body>
     </html>
         
@@ -66,7 +65,96 @@ Dato nuevo: La palabra "VANILLA" describe a los productos originales sin nada ex
 
     Para correr el servidor: http-server-spa . ./index.html
 
+5.- Creando nuestro archivo de rutas
+
+    Tenemos que crear un array donde vamos a definir todas nuestras rutas que nuestra aplicación pueda tener.
+
+    Creamos un archivo routes.js donde se declaramos lo siguiente:
+
+    const routes = [
+        {
+            path: '/',
+            template: '<h1>Hola</h1>'
+        },
+
+        {
+            path: '/Contact',
+            template: '<h1>Contact</h1>'
+        },
+        
+        {
+            path: '/AboutMe',
+            template: '<h1>About Me</h1>'
+        },
+    ];
+
+6.- Creación de la función loadInitialRoute
+
+    Vamos a escribir la lógica de nuestra aplicación que se va a encargar del ruteo y el cambio de datos en nuestro html
+
+    Creamos un archivo router.js donde escribimos:
+
+    class Router {
+
+        constructor(routes) {
+            this.routes = routes;
+            this._loadInitialRoute();
+            }
     
+
+        _loadInitialRoute() {
+
+            const pathNameSplit = window.location.pathname.split('/');
+            const pathSegs = pathNameSplit.length > 1 ? pathNameSplit(1): '';
+
+            this.loadRoute(...pathSegs);
+
+        } 
+    }
+
+7.- Haciendo match entre la URL y una ruta
+
+    Vamos a crear una función que haga match entre la URL que queremos ir con la URL que se muestra
+
+    _matchUrlToRoute(urlSegs){
+        const mathedRouteee = this.routes.find(route => {
+            const routePathSegs = route.path.split('/').slice(1)
+
+                if (routePathSegs.length !== urlSegs.length){
+                    return false;
+                }
+
+                return routePathSegs
+                    .every((routePathSeg, i)=> routePathSeg === urlSegs[i]);
+        });
+
+        return mathedRoute;
+
+    }
+
+8.- Creando la función load routes
+
+    _loadRoute(...urlSegs){
+
+        const mathedRoute = this._matchUrlToRoute(urlSegs);
+
+        const url = `/url${urlSegs.join('/')}`;
+        history.pushState({},'this works', url);
+
+        const routerOutElm = document.querySelectorAll('[data-router]')[0];
+        routerOutElm.innerHTML = mathedRoute.template;
+    }
+
+    Creamos index.js con lo siguiente:
+
+    const router = new Router(routes);
+
+9.- Actualizando nuestro index.html para agregar la nueva funcionalidad de routing
+
+
+
+
+
 
 
 
