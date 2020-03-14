@@ -11,7 +11,7 @@ class Router {
 
         const mathedRoute = this._matchUrlToRoute(urlSegs);
 
-        const url = `/url${urlSegs.join('/')}`;
+        const url = `/${urlSegs.join('/')}`;
         history.pushState({},'this works', url);
 
         const routerOutElm = document.querySelectorAll('[data-router]')[0];
